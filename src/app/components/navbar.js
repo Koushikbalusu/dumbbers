@@ -8,7 +8,9 @@ import TextCarousel from "./TextCarousel";
 import "./navbar.css";
 import { useState } from "react";
 
+
 export default function Navbar() {
+  const categories = ["Pants","Boxy vests","Compression t shirts","Oversized t shirts"];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -25,44 +27,44 @@ export default function Navbar() {
       <nav className="navbar">
         <div className="logo">
           <Link href="/" onClick={closeMobileMenu}>
-            <Image 
-              src="/logo.png" 
-              alt="logo" 
-              width={50} 
+            <Image
+              src="/logo.png"
+              alt="logo"
+              width={50}
               height={50}
               priority
               style={{
-                width: '100%',
-                height: 'auto',
-                objectFit: 'contain'
+                width: "100%",
+                height: "auto",
+                objectFit: "contain",
               }}
             />
           </Link>
         </div>
-        
-        <button 
-          className="mobileMenuToggle" 
+
+        <button
+          className="mobileMenuToggle"
           onClick={toggleMobileMenu}
           aria-label="Toggle mobile menu"
         >
           {mobileMenuOpen ? <HiX /> : <HiMenuAlt3 />}
         </button>
-        
-        <div className={`links ${mobileMenuOpen ? 'active' : ''}`}>
-          <Link href="/t-shirts" onClick={closeMobileMenu}>
-            T-SHIRTS
-          </Link>
-          <Link href="/vests" onClick={closeMobileMenu}>
-            VESTS
-          </Link>
-          <Link href="/bottoms" onClick={closeMobileMenu}>
-            BOTTOMS
-          </Link>
-          <Link href="/accessories" onClick={closeMobileMenu}>
-            ACCESSORIES
-          </Link>
+
+        <div className={`links ${mobileMenuOpen ? "active" : ""}`}>
+
+          {categories.map((category) => {
+            return (
+              <Link
+                key={category}
+                href={`/${category.toLowerCase().replace(/\s+/g, '')}`}
+                style={{ textDecoration: "none" }}
+              >
+                {category.replace(/_/g, " ").toUpperCase()}
+              </Link>
+            );
+          })}
         </div>
-        
+
         <div className="icons">
           <CiSearch />
           <CiHeart />

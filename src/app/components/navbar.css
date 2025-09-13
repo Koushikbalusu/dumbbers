@@ -170,6 +170,9 @@
     right: 0;
     z-index: 1100;
     background-color: #000000 !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .logo {
@@ -189,6 +192,9 @@
     align-items: center;
     justify-content: center;
     font-size: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .mobileMenuToggle:hover {
@@ -239,7 +245,35 @@
   }
 
   .icons {
-    display: none;
+    display: flex !important;
+    gap: clamp(0.5rem, 3vw, 0.8rem);
+    align-items: center;
+    color: white;
+    z-index: 1101;
+  }
+
+  .icons svg {
+    width: clamp(16px, 4vw, 20px);
+    height: clamp(16px, 4vw, 20px);
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .icons svg:hover {
+    color: #00d4ff;
+  }
+}
+
+/* Large and Extra Large Devices - Reduced font size */
+@media (min-width: 1025px) {
+  .links a {
+    font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+    padding: clamp(0.4rem, 1.5vh, 0.6rem) clamp(0.6rem, 1.8vw, 0.9rem);
+    letter-spacing: 0.3px;
+  }
+
+  .links {
+    gap: clamp(1rem, 2.5vw, 1.5rem);
   }
 }
 
