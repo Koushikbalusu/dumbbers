@@ -1,0 +1,259 @@
+/* Search Page Styles */
+.searchPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  color: #ffffff;
+  padding: 20px 0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.searchPage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(78, 205, 196, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Page Header */
+.pageHeader {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+  padding: 20px 0;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.01em;
+}
+
+.pageSubtitle {
+  font-size: 1rem;
+  color: #b0b0b0;
+  margin: 0;
+  font-weight: 400;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Search Content */
+.searchContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Results Section */
+.resultsSection {
+  min-height: 400px;
+}
+
+.resultsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.resultsInfo p {
+  margin: 0;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.loadingText {
+  color: #4ecdc4 !important;
+}
+
+.errorText {
+  color: #ff6b6b !important;
+}
+
+.resultsCount {
+  color: #ffffff !important;
+}
+
+.sortContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sortLabel {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.sortSelect {
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 180px;
+}
+
+.sortSelect:focus {
+  border-color: #4ecdc4;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.2);
+}
+
+.sortSelect option {
+  background: #1a1a2e;
+  color: #ffffff;
+  padding: 8px;
+}
+
+/* Products Grid */
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  margin-bottom: 40px;
+  justify-items: start;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Loading States */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid #4ecdc4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingContainer p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  margin: 0;
+}
+
+/* No Results */
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.noResults h3 {
+  color: #ffffff;
+  font-size: 24px;
+  margin: 0 0 12px 0;
+}
+
+.noResults p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  margin: 0 0 24px 0;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .searchPage {
+    padding: 10px 0;
+  }
+  
+  .pageHeader {
+    margin-bottom: 25px;
+    padding: 15px 0;
+  }
+  
+  .pageTitle {
+    font-size: 1.8rem;
+  }
+  
+  .pageSubtitle {
+    font-size: 0.9rem;
+  }
+  
+  .searchContent {
+    padding: 0 15px;
+  }
+  
+  .resultsHeader {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageHeader {
+    margin-bottom: 20px;
+    padding: 10px 0;
+  }
+  
+  .pageTitle {
+    font-size: 1.6rem;
+  }
+  
+  .pageSubtitle {
+    font-size: 0.85rem;
+  }
+  
+  .searchContent {
+    padding: 0 10px;
+  }
+  
+  .productsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 400px;
+  }
+  
+  .sortSelect {
+    min-width: 150px;
+  }
+}

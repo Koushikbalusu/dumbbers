@@ -7,13 +7,17 @@ import axios from "axios";
 import Categorycard from "./components/Categorycard";
 import Link from "next/link";
 
-const heroimgurl =
-  "https://res.cloudinary.com/dziymwwa3/image/upload/v1757017876/8b349ee5-1a9d-4aa5-9a5d-dc8fb8b2ab73.png";
-// const heroimgurl = "https://res.cloudinary.com/dziymwwa3/image/upload/v1757017876/8b349ee5-1a9d-4aa5-9a5d-dc8fb8b2ab73.png";
+const heroimgurl = "https://res.cloudinary.com/dziymwwa3/image/upload/v1757017876/8b349ee5-1a9d-4aa5-9a5d-dc8fb8b2ab73.png";
 
 export default function Home() {
   const [meta, setMeta] = useState(null);
   const [categories, setCategories] = useState([]);
+  const [categoryImages, setCategoryImages] = useState({
+    pants: null,
+    boxyvests: null,
+    compressiontshirts: null,
+    oversizedtshirts: null
+  });
 
   useEffect(() => {
     axios
@@ -23,6 +27,39 @@ export default function Home() {
         setCategories(res.data.data.categories);
       })
       .catch((err) => console.error(err));
+  }, []);
+
+  // Fetch category images from respective category pages
+  useEffect(() => {
+    const fetchCategoryImages = async () => {
+      const categoryEndpoints = {
+        pants: "https://dumbbers-backend.onrender.com/api/products?category=PANTS",
+        boxyvests: "https://dumbbers-backend.onrender.com/api/products?category=BOXY_VESTS",
+        compressiontshirts: "https://dumbbers-backend.onrender.com/api/products?category=COMPRESSION_T_SHIRTS",
+        oversizedtshirts: "https://dumbbers-backend.onrender.com/api/products?category=OVERSIZED_T_SHIRTS"
+      };
+
+      const imagePromises = Object.entries(categoryEndpoints).map(async ([category, endpoint]) => {
+        try {
+          const response = await axios.get(endpoint);
+          const products = response.data?.data?.items || [];
+          const firstProductImage = products.length > 0 ? products[0].images?.[0] : null;
+          return { category, image: firstProductImage };
+        } catch (error) {
+          console.error(`Error fetching ${category} products:`, error);
+          return { category, image: null };
+        }
+      });
+
+      const results = await Promise.all(imagePromises);
+      const newCategoryImages = {};
+      results.forEach(({ category, image }) => {
+        newCategoryImages[category] = image;
+      });
+      setCategoryImages(newCategoryImages);
+    };
+
+    fetchCategoryImages();
   }, []);
 
   return (
@@ -39,21 +76,30 @@ export default function Home() {
       <div className={style.categoriessection} id="categoriessection">
         <h1>CATEGORIES</h1>
         <div className={style.categorycardscontainer}>
-          {categories.map((category) => {
-            const imageUrl = `https://res.cloudinary.com/dziymwwa3/image/upload/v1757320616/${category}.png`;
-            return (
-              <Link
-                key={category}
-                href={`/categories/${category.toLowerCase()}`}
-                style={{ textDecoration: "none" }}
-              >
-                <Categorycard
-                  category={category.replace(/_/g, " ").toUpperCase()}
-                  imageUrl={imageUrl}
-                />
-              </Link>
-            );
-          })}
+          <Link href="/pants" style={{ textDecoration: "none" }}>
+            <Categorycard
+              category="PANTS"
+              imageUrl={categoryImages.pants || "https://res.cloudinary.com/dziymwwa3/image/upload/v1757352351/pants-category.png"}
+            />
+          </Link>
+          <Link href="/boxyvests" style={{ textDecoration: "none" }}>
+            <Categorycard
+              category="BOXY VESTS"
+              imageUrl={categoryImages.boxyvests || "https://res.cloudinary.com/dziymwwa3/image/upload/v1757352351/boxy-vests-category.png"}
+            />
+          </Link>
+          <Link href="/compressiontshirts" style={{ textDecoration: "none" }}>
+            <Categorycard
+              category="COMPRESSION T-SHIRTS"
+              imageUrl={categoryImages.compressiontshirts || "https://res.cloudinary.com/dziymwwa3/image/upload/v1757352351/compression-tshirts-category.png"}
+            />
+          </Link>
+          <Link href="/oversizedtshirts" style={{ textDecoration: "none" }}>
+            <Categorycard
+              category="OVERSIZED T-SHIRTS"
+              imageUrl={categoryImages.oversizedtshirts || "https://res.cloudinary.com/dziymwwa3/image/upload/v1757352351/oversized-tshirts-category.png"}
+            />
+          </Link>
         </div>
       </div>
       <div className={style.featuredsection} id="featuredsection">
@@ -71,8 +117,10 @@ export default function Home() {
             <h3>DUMBBERS</h3>
             <h3>KYRON WHITE BOXY VEST</h3>
             <h3>RS.999.0</h3>
-            <button className={style.addtocartbtn}>ADD TO CART</button>
-            <button className={style.buyitnowbtn}>BUY IT NOW</button>
+            <div className={style.buttoncontainer}>
+              <button className={style.addtocartbtn}>ADD TO CART</button>
+              <button className={style.buyitnowbtn}>BUY IT NOW</button>
+            </div>
           </div>
         </div>
       </div>
@@ -86,8 +134,7 @@ export default function Home() {
         <div className={style.contributiondetails}>
           <div className={style.contributiontext}>
             <h3 className={style.contributionheading}>
-              For every 25 orders, we donate 1 dress to needy.Now it’s your turn
-              to help them as Citizens.
+              For every 25 orders, we donate 1 dress to needy.Now it's your turn to help them as Citizens.
             </h3>
           </div>
           <div className={style.contributionstats}>

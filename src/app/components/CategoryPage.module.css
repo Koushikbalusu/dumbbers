@@ -1,4 +1,4 @@
-/* Pants Page Styles */
+/* Shared Category Page Styles */
 .container {
   min-height: 100vh;
   background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
@@ -23,41 +23,40 @@
 
 .pageHeader {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   position: relative;
   z-index: 1;
+  padding: 20px 0;
 }
 
 .pageTitle {
-  font-size: 3.5rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #ffffff, #4ecdc4, #45b7d1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 20px 0;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  letter-spacing: -0.02em;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.01em;
 }
 
 .pageSubtitle {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #b0b0b0;
   margin: 0;
-  font-weight: 300;
-  max-width: 600px;
+  font-weight: 400;
+  max-width: 500px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
+/* Optimized Grid for 320px Product Cards */
 .productsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  max-width: 1400px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  max-width: 1600px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  justify-items: start;
 }
 
 .loadingState {
@@ -85,10 +84,19 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1400px) {
+  .productsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    max-width: 1200px;
+  }
+}
+
 @media (max-width: 1200px) {
   .productsGrid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    gap: 24px;
+    max-width: 1000px;
   }
 }
 
@@ -97,21 +105,31 @@
     padding: 30px 15px;
   }
   
+  .pageHeader {
+    margin-bottom: 30px;
+    padding: 15px 0;
+  }
+  
   .pageTitle {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .pageSubtitle {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .productsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
+    max-width: 100%;
   }
-  
-  .pageHeader {
-    margin-bottom: 40px;
+}
+
+@media (max-width: 640px) {
+  .productsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 400px;
   }
 }
 
@@ -120,12 +138,39 @@
     padding: 20px 10px;
   }
   
+  .pageHeader {
+    margin-bottom: 25px;
+    padding: 10px 0;
+  }
+  
   .pageTitle {
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+  
+  .pageSubtitle {
+    font-size: 0.85rem;
   }
   
   .productsGrid {
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 16px;
+    max-width: 100%;
   }
+}
+
+/* Category-specific loading state colors */
+.pants .loadingState {
+  color: #4ecdc4;
+}
+
+.boxyvests .loadingState {
+  color: #96ceb4;
+}
+
+.compressiontshirts .loadingState {
+  color: #4ecdc4;
+}
+
+.oversizedtshirts .loadingState {
+  color: #ff6b6b;
 }

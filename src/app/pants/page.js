@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import style from "./pant.module.css";
+import styles from "../components/CategoryPage.module.css";
 import Productcard from "../components/Productcard";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -10,7 +10,7 @@ export default function PantsPage() {
 
     useEffect(() => {
         axios
-            .get("https://dumbbers-backend.onrender.com/api/products?category=T_SHIRTS")
+            .get("https://dumbbers-backend.onrender.com/api/products?category=PANTS")
             .then((response) => {
                 if (response.data && response.data.data && response.data.data.items) {
                     setProducts(response.data.data.items);
@@ -23,8 +23,34 @@ export default function PantsPage() {
     }, []);
 
     return (
-        <div className={style.container}>
+        <div className={`${styles.container} ${styles.pants}`}>
+            <div className={styles.pageHeader}>
+                <h1 className={styles.pageTitle}>PANTS</h1>
+                <p className={styles.pageSubtitle}>
+                    Discover our premium collection of comfortable and stylish pants designed for every occasion.
+                </p>
+            </div>
             
+            {products.length === 0 ? (
+                <div className={styles.loadingState}>
+                    Loading products...
+                </div>
+            ) : (
+                <div className={styles.productsGrid}>
+                    {products.map((product) => (
+                        <Productcard
+                            key={product._id}
+                            prodId={product._id}
+                            prodName={product.name}
+                            imageUrl={product.images?.[0] || '/placeholder.jpg'}
+                            prodDiscription={product.description}
+                            prodPrice={product.variants?.[0]?.price || 0}
+                            prodSlug={product.slug}
+                            images={product.images || []}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     )
 }
