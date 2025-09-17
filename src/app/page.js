@@ -7,8 +7,6 @@ import axios from "axios";
 import Categorycard from "./components/Categorycard";
 import Link from "next/link";
 
-const heroimgurl = "https://res.cloudinary.com/dziymwwa3/image/upload/v1757017876/8b349ee5-1a9d-4aa5-9a5d-dc8fb8b2ab73.png";
-
 export default function Home() {
   const [meta, setMeta] = useState(null);
   const [categories, setCategories] = useState([]);
@@ -65,13 +63,45 @@ export default function Home() {
   return (
     <>
       <div className={style.herosection} id="herosection">
-        <Image
-          className={style.heroimg}
-          src={heroimgurl}
-          alt="heroimg"
-          width={500}
-          height={500}
-        />
+        <div className={style.herocontent}>
+          <div className={style.herotext}>
+            <h1 className={style.herotitle}>DUMBBERS</h1>
+            <p className={style.herosubtitle}>Premium Athletic Wear</p>
+            <p className={style.herodescription}>
+              Elevate your performance with our cutting-edge athletic wear designed for champions. 
+              Experience the perfect blend of style, comfort, and functionality.
+            </p>
+            <div className={style.herobuttons}>
+              <button 
+                className={style.ctabutton}
+                onClick={() => {
+                  document.getElementById('categoriessection')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  });
+                }}
+              >
+                Explore Collections
+              </button>
+              <button 
+                className={style.secondarybutton}
+                onClick={() => {
+                  document.getElementById('featuredsection')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  });
+                }}
+              >
+                Featured Product
+              </button>
+            </div>
+          </div>
+          <div className={style.herovisual}>
+            <div className={style.heroshapes}>
+              <div className={style.shape1}></div>
+              <div className={style.shape2}></div>
+              <div className={style.shape3}></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div className={style.categoriessection} id="categoriessection">
         <h1>CATEGORIES</h1>

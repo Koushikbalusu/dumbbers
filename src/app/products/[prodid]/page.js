@@ -6,6 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
 import WishlistButton from '../../components/WishlistButton';
 import styles from './products.module.css';
+import AuthModal from '../../components/AuthModal';
 
 export default function ProductPage() {
   const params = useParams();
@@ -23,6 +24,7 @@ export default function ProductPage() {
   const [reviewForm, setReviewForm] = useState({ rating: 0, title: '', body: '' });
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [userHasReviewed, setUserHasReviewed] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
 
   useEffect(() => {
     if (params.prodid) {
@@ -66,7 +68,7 @@ export default function ProductPage() {
     }
 
     if (!isAuthenticated) {
-      setMessage('Please login to add items to cart');
+      setAuthModalOpen(true);
       return;
     }
 
@@ -232,8 +234,14 @@ export default function ProductPage() {
               <h2>Customer Reviews</h2>
               <button 
                 className={styles['add-review-btn']}
-                onClick={() => setShowReviewForm(!showReviewForm)}
-                disabled={!isAuthenticated || userHasReviewed}
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    setAuthModalOpen(true);
+                  } else if (!userHasReviewed) {
+                    setShowReviewForm(!showReviewForm);
+                  }
+                }}
+                disabled={userHasReviewed}
               >
                 {!isAuthenticated ? 'Login to Review' : 
                  userHasReviewed ? 'Already Reviewed' : 'Write a Review'}
@@ -459,17 +467,15 @@ export default function ProductPage() {
             <button 
               className={styles['add-to-cart-btn']}
               onClick={handleAddToCart}
-              disabled={!selectedVariant || !isAuthenticated}
+              disabled={!selectedVariant}
             >
               {!isAuthenticated ? 'Login to Add to Cart' : 'Add to Cart'}
-            </button>
-            <button className={styles['buy-now-btn']}>
-              Buy Now
             </button>
           </div>
           </div>
         </div>
       </div>
+      <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
     </div>
   );
 }

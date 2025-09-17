@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
+  --primary-accent: #00d4ff;
+  --secondary-accent: #00ff88;
+  --text-muted: #cccccc;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.05);
 }
 
 @theme inline {
@@ -10,13 +15,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 /* Global Responsive Base */
@@ -30,7 +28,7 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: #000000;
   color: var(--foreground);
   font-family: 'Rajdhani', sans-serif;
   margin: 0;
@@ -38,10 +36,43 @@ body {
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
+  min-height: 100vh;
+  position: relative;
 }
 
-/* Global responsive overflow prevention */
-@media (max-width: 480px) {
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0a0a0a 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Remove any spacing between sections */
+main, section, div {
+  margin: 0;
+  padding: 0;
+}
+
+/* Global responsive overflow prevention and mobile optimizations */
+* {
+  box-sizing: border-box;
+  max-width: 100vw;
+}
+
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 767px) {
   * {
     max-width: 100vw !important;
     overflow-x: hidden !important;
@@ -52,15 +83,36 @@ body {
     width: 100% !important;
     max-width: 100vw !important;
   }
-}
-
-/* Fixed navbar spacing for very small devices */
-@media (max-width: 470px) {
-  main {
-    margin-top: 0;
+  
+  /* Improve touch scrolling */
+  body {
+    -webkit-overflow-scrolling: touch;
   }
   
-  body {
-    padding-top: 0;
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px !important;
   }
 }
+
+/* Enhanced mobile experience */
+@media (max-width: 575px) {
+  /* Ensure proper touch targets */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve text readability */
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Optimize for mobile viewport */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+}
+

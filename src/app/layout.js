@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import { AuthProvider } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
 // import BootstrapClient from "./components/BootstrapClient";
@@ -28,9 +28,7 @@ export default function RootLayout({ children }) {
       >
         <AuthProvider>
           <CartProvider>
-            <header>
-              <Navbar />
-            </header>
+            <Navbar />
             <main>{children}</main>
             <footer></footer>
             {/* <BootstrapClient /> */}

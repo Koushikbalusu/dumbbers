@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import AuthModal from '../components/AuthModal';
 import styles from './cart.module.css';
 
 export default function CartPage() {
@@ -12,6 +13,7 @@ export default function CartPage() {
   const router = useRouter();
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -87,11 +89,12 @@ export default function CartPage() {
           <p>Add items to your cart and proceed to checkout</p>
           <button 
             className={styles.loginButton}
-            onClick={() => router.push('/')}
+            onClick={() => setAuthModalOpen(true)}
           >
             Sign In
           </button>
         </div>
+        <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
       </div>
     );
   }

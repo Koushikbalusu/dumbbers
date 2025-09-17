@@ -222,3 +222,16 @@
     font-size: 1.4rem;
   }
 }
+
+/* Fine-tune card spacing and hover behavior for ~427px screens */
+@media (max-width: 427px) {
+  /* Reduce hover lift to avoid touching adjacent cards on small screens */
+  .productcard-wrapper:hover {
+    transform: translateY(-6px) scale(1.015);
+  }
+
+  /* Ensure there's enough gap between cards when they grow on hover */
+  .productcard-wrapper {
+    max-width: 100%;
+  }
+}

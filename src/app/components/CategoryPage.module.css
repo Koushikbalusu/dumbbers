@@ -158,6 +158,19 @@
   }
 }
 
+/* Specific tweak for ~427px viewports */
+@media (max-width: 427px) {
+  .pageHeader {
+    /* add extra space below the heading and paragraph */
+    padding-bottom: 28px;
+    margin-bottom: 40px;
+  }
+  
+  .productsGrid {
+    gap: 32px;
+  }
+}
+
 /* Category-specific loading state colors */
 .pants .loadingState {
   color: #4ecdc4;

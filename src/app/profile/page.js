@@ -8,7 +8,7 @@ import AddressManagement from '../components/AddressManagement';
 import styles from './profile.module.css';
 
 export default function ProfilePage() {
-  const { user, updateProfile, isAuthenticated } = useAuth();
+  const { user, updateProfile, isAuthenticated, logout } = useAuth();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('profile');
   const [isEditing, setIsEditing] = useState(false);
@@ -68,6 +68,11 @@ export default function ProfilePage() {
     });
     setIsEditing(false);
     setMessage('');
+  };
+
+  const handleLogout = () => {
+    logout();
+    router.push('/');
   };
 
   if (!isAuthenticated) {
@@ -219,6 +224,10 @@ export default function ProfilePage() {
         <div className={styles.tabContent}>
           {renderTabContent()}
         </div>
+      </div>
+
+      <div className={styles.logoutContainer}>
+        <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );

@@ -2,42 +2,27 @@
 import Image from "next/image";
 import { CiUser, CiSearch, CiHeart } from "react-icons/ci";
 import { PiBagSimple } from "react-icons/pi";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
-import TextCarousel from "./TextCarousel";
-import AuthModal from "./AuthModal";
+import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/AuthContext";
 import { useCart } from "../contexts/CartContext";
-import "./navbar.css";
-import { useState, useRef, useEffect } from "react";
-
+import { useState } from "react";
+import AuthModal from "./AuthModal";
+import "./Navbar.css";
 
 export default function Navbar() {
-  const categories = ["Pants","Boxy vests","Compression t shirts","Oversized t shirts"];
+  const router = useRouter();
+  const categories = ["Pants", "Boxy Vests", "Compression T-Shirts", "Oversized T-Shirts"];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [authModalOpen, setAuthModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [showSearchResults, setShowSearchResults] = useState(false);
-  const [showUserDropdown, setShowUserDropdown] = useState(false);
-  const userMenuRef = useRef(null);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  
   
   const { user, logout, isAuthenticated } = useAuth();
   const { getCartItemCount } = useCart();
 
-  // Handle clicking outside the user dropdown
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
-        setShowUserDropdown(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  // Removed obsolete user dropdown outside-click handler
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -47,180 +32,176 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   };
 
-  const handleSearch = async (query) => {
-    if (!query.trim()) {
-      setSearchResults([]);
-      setShowSearchResults(false);
-      return;
-    }
-
-    try {
-      const response = await fetch(`https://dumbbers-backend.onrender.com/api/products/suggest?q=${encodeURIComponent(query)}`);
-      const data = await response.json();
-      
-      if (data.success) {
-        setSearchResults(data.data.items);
-        setShowSearchResults(true);
-      }
-    } catch (error) {
-      console.error('Search error:', error);
-    }
+  const openAuthModal = () => {
+    setAuthModalOpen(true);
   };
 
-  const handleSearchInputChange = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-    handleSearch(query);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
-    }
+  const closeAuthModal = () => {
+    setAuthModalOpen(false);
   };
 
   const handleLogout = () => {
     logout();
     setMobileMenuOpen(false);
-    setShowUserDropdown(false);
   };
 
-  const handleUserMenuMouseEnter = () => {
-    setShowUserDropdown(true);
+  const submitSearch = () => {
+    const query = searchQuery.trim();
+    if (!query) return;
+    router.push(`/search?q=${encodeURIComponent(query)}`);
+    setMobileMenuOpen(false);
   };
 
-  const handleUserMenuMouseLeave = () => {
-    // Add a small delay before hiding to allow moving to dropdown
-    setTimeout(() => {
-      setShowUserDropdown(false);
-    }, 150);
+  const handleSearchKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      submitSearch();
+    }
   };
+
+  // We rely on explicit clicks/taps to open/close the user dropdown
+  // This works reliably on touch screens (no hover needed)
+
+  // Removed obsolete user dropdown toggle handler
+
+  // no dropdown state
 
   return (
-    <>
-      <TextCarousel />
-      <nav className="navbar">
-        <div className="logo">
+    <nav className="navbar">
+      <div className="navbar-container">
+        {/* Logo */}
+        <div className="navbar-logo">
           <Link href="/" onClick={closeMobileMenu}>
             <Image
               src="/logo.png"
-              alt="logo"
+              alt="Dumbbers Logo"
               width={50}
               height={50}
               priority
-              style={{
-                width: "100%",
-                height: "auto",
-                objectFit: "contain",
-              }}
+              className="logo-image"
             />
           </Link>
         </div>
 
-        <button
-          className="mobileMenuToggle"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle mobile menu"
-        >
-          {mobileMenuOpen ? <HiX /> : <HiMenuAlt3 />}
-        </button>
-
-        <div className={`links ${mobileMenuOpen ? "active" : ""}`}>
-          {categories.map((category) => {
+        {/* Desktop Navigation */}
+        <div className="navbar-links">
+          {categories.map((category, index) => {
+            // Remove spaces and hyphens only for 3rd and 4th links (index 2 and 3)
+            const href = index >= 2 
+              ? `/${category.toLowerCase().replace(/\s+/g, '').replace(/-/g, '')}`
+              : `/${category.toLowerCase().replace(/\s+/g, '')}`;
+            
             return (
               <Link
                 key={category}
-                href={`/${category.toLowerCase().replace(/\s+/g, '')}`}
-                style={{ textDecoration: "none" }}
+                href={href}
+                className="nav-link"
                 onClick={closeMobileMenu}
               >
-                {category.replace(/_/g, " ").toUpperCase()}
+                {category}
               </Link>
             );
           })}
         </div>
 
-        <div className="search-container">
-          <form onSubmit={handleSearchSubmit} className="search-form">
+        {/* Search Bar */}
+        <div className="navbar-search">
+          <div className="search-container">
+            <CiSearch className="search-icon" />
             <input
               type="text"
               placeholder="Search products..."
               value={searchQuery}
-              onChange={handleSearchInputChange}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearchKeyDown}
+              enterKeyHint="search"
+              inputMode="search"
               className="search-input"
-              onFocus={() => setShowSearchResults(true)}
-              onBlur={() => setTimeout(() => setShowSearchResults(false), 200)}
             />
-            <button type="submit" className="search-button">
-              <CiSearch />
-            </button>
-          </form>
-          
-          {showSearchResults && searchResults.length > 0 && (
-            <div className="search-results">
-              {searchResults.map((product) => (
-                <Link
-                  key={product._id}
-                  href={`/products/${product._id}`}
-                  className="search-result-item"
-                  onClick={() => {
-                    setShowSearchResults(false);
-                    setSearchQuery("");
-                  }}
-                >
-                  <span className="search-result-name">{product.name}</span>
-                  <span className="search-result-category">{product.category}</span>
-                </Link>
-              ))}
-            </div>
-          )}
+          </div>
         </div>
 
-        <div className="icons">
-          <Link href="/wishlist" className="wishlist-link">
+        {/* Right Side Icons */}
+        <div className="navbar-actions">
+          <Link href="/wishlist" className="action-link">
             <CiHeart />
           </Link>
-          <Link href="/cart" className="cart-link">
+          <Link href="/cart" className="action-link cart-link">
             <PiBagSimple />
             {isAuthenticated && getCartItemCount() > 0 && (
-              <span className="cart-count">{getCartItemCount()}</span>
+              <span className="cart-badge">{getCartItemCount()}</span>
             )}
           </Link>
           {isAuthenticated ? (
-            <div 
-              className="user-menu"
-              ref={userMenuRef}
-              onMouseEnter={handleUserMenuMouseEnter}
-              onMouseLeave={handleUserMenuMouseLeave}
-            >
-              <button className="user-button">
-                <CiUser />
-                <span className="user-name">{user?.name}</span>
-              </button>
-              {showUserDropdown && (
-                <div className="user-dropdown">
-                  <Link href="/profile" onClick={() => { closeMobileMenu(); setShowUserDropdown(false); }}>Profile</Link>
-                  <button onClick={handleLogout}>Logout</button>
-                </div>
-              )}
-            </div>
+            <Link href="/profile" className="action-link" aria-label="Profile" onClick={closeMobileMenu}>
+              <CiUser />
+            </Link>
           ) : (
             <button 
-              className="login-button"
-              onClick={() => setAuthModalOpen(true)}
+              className="action-link"
+              aria-label="Login"
+              onClick={openAuthModal}
             >
               <CiUser />
-              <span>Login</span>
             </button>
           )}
         </div>
-      </nav>
-      
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="mobile-menu-toggle"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle mobile menu"
+        >
+          {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${mobileMenuOpen ? 'active' : ''}`}>
+        <div className="mobile-menu-content">
+          <div className="mobile-search">
+            <div className="search-container">
+              <CiSearch className="search-icon" />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearchKeyDown}
+                enterKeyHint="search"
+                inputMode="search"
+                className="search-input"
+              />
+            </div>
+          </div>
+          <div className="mobile-links">
+            {categories.map((category, index) => {
+              // Remove spaces and hyphens only for 3rd and 4th links (index 2 and 3)
+              const href = index >= 2 
+                ? `/${category.toLowerCase().replace(/\s+/g, '').replace(/-/g, '')}`
+                : `/${category.toLowerCase().replace(/\s+/g, '')}`;
+              
+              return (
+                <Link
+                  key={category}
+                  href={href}
+                  className="mobile-nav-link"
+                  onClick={closeMobileMenu}
+                >
+                  {category}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Auth Modal */}
       <AuthModal 
         isOpen={authModalOpen} 
-        onClose={() => setAuthModalOpen(false)} 
+        onClose={closeAuthModal} 
       />
-    </>
+    </nav>
   );
 }

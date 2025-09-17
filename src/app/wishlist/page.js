@@ -4,12 +4,14 @@ import { useAuth } from '../contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import Productcard from '../components/Productcard';
 import styles from './wishlist.module.css';
+import AuthModal from '../components/AuthModal';
 
 export default function WishlistPage() {
   const { user, isAuthenticated } = useAuth();
   const router = useRouter();
   const [wishlistItems, setWishlistItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -84,11 +86,12 @@ export default function WishlistPage() {
           <p>Save your favorite items and access them anytime</p>
           <button 
             className={styles.loginButton}
-            onClick={() => router.push('/')}
+            onClick={() => setAuthModalOpen(true)}
           >
             Sign In
           </button>
         </div>
+        <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
       </div>
     );
   }
