@@ -1,0 +1,68 @@
+/* Wishlist Button Styles */
+.wishlist-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #000000;
+  color: #c4c4c4;
+  border: 2px solid #000000;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.9;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.wishlist-button:hover {
+  background: #c4c4c4;
+  color: #000000;
+  transform: scale(1.15);
+  opacity: 1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.wishlist-button.active {
+  background: #c4c4c4;
+  color: #000000;
+  opacity: 1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.wishlist-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Show button on hover - enhanced visibility */
+.productcard:hover .wishlist-button {
+  opacity: 1;
+  background: #c4c4c4;
+  color: #000000;
+}
+
+/* Always show if active */
+.productcard .wishlist-button.active {
+  opacity: 1;
+}
+
+/* Unauthenticated state */
+.wishlist-button.unauthenticated {
+  background: #000000;
+  color: #c4c4c4;
+  opacity: 0.6;
+}
+
+.wishlist-button.unauthenticated:hover {
+  background: #c4c4c4;
+  color: #000000;
+  opacity: 0.8;
+}

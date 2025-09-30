@@ -1,0 +1,227 @@
+/* Auth Modal Styles */
+.auth-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.auth-modal {
+  background: #c4c4c4;
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  border: 1px solid #000000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.auth-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.auth-modal-close:hover {
+  background: #000000;
+  color: #c4c4c4;
+}
+
+.auth-modal-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-modal-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: var(--font-orbitron), monospace;
+  color: #000000;
+  margin: 0 0 10px 0;
+}
+
+.auth-modal-header p {
+  color: #000000;
+  font-size: 0.95rem;
+  font-family: var(--font-orbitron), monospace;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #000000;
+  font-weight: 500;
+  font-size: 0.9rem;
+  font-family: var(--font-orbitron), monospace;
+}
+
+.form-group input {
+  padding: 12px 16px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  background: #c4c4c4;
+  color: #000000;
+  font-size: 1rem;
+  font-family: var(--font-orbitron), monospace;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #000000;
+  background: #c4c4c4;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #000000;
+}
+
+.message {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.message.error {
+  background: #c4c4c4;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.message.success {
+  background: #c4c4c4;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.auth-submit-btn {
+  background: #c4c4c4;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-orbitron), monospace;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.auth-submit-btn:hover:not(:disabled) {
+  background: #000000;
+  color: #c4c4c4;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.auth-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.auth-modal-footer {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #000000;
+}
+
+.auth-modal-footer p {
+  color: #000000;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.auth-switch-btn {
+  background: none;
+  border: none;
+  color: #000000;
+  font-weight: 600;
+  font-family: var(--font-orbitron), monospace;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.auth-switch-btn:hover {
+  color: #000000;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .auth-modal {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+  
+  .auth-modal-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .auth-modal-header p {
+    font-size: 0.85rem;
+  }
+  
+  .form-group input {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+  
+  .auth-submit-btn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+}

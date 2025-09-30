@@ -1,0 +1,126 @@
+/* Compression T-Shirts Page Styles */
+.container {
+  min-height: 100vh;
+  background: #c4c4c4;
+  padding: 40px 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #c4c4c4;
+  pointer-events: none;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.pageTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  font-family: var(--font-orbitron), monospace;
+  color: #000000;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.02em;
+}
+
+.pageSubtitle {
+  font-size: 1.2rem;
+  font-family: var(--font-orbitron), monospace;
+  color: #000000;
+  margin: 0;
+  font-weight: 300;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.loadingState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  color: #000000;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.emptyState {
+  text-align: center;
+  color: #000000;
+  font-size: 1.1rem;
+  grid-column: 1 / -1;
+  padding: 60px 20px;
+}
+
+.emptyState h3 {
+  color: #000000;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .productsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 30px 15px;
+  }
+  
+  .pageTitle {
+    font-size: 2.5rem;
+  }
+  
+  .pageSubtitle {
+    font-size: 1rem;
+  }
+  
+  .productsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .pageHeader {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 10px;
+  }
+  
+  .pageTitle {
+    font-size: 2rem;
+  }
+  
+  .productsGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}

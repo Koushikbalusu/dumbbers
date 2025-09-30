@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+:root {
+  --background: #c4c4c4;
+  --foreground: #000000;
+  --primary-accent: #000000;
+  --secondary-accent: #c4c4c4;
+  --text-muted: #000000;
+  --text-light: #000000;
+  --border-color: #000000;
+  --card-bg: #c4c4c4;
+  --card-bg-hover: #c4c4c4;
+  --accent-grey: #c4c4c4;
+  --accent-light-grey: #c4c4c4;
+  --accent-dark-grey: #c4c4c4;
+  --premium-black: #000000;
+  --premium-white: #c4c4c4;
+  --premium-grey-light: #c4c4c4;
+  --premium-grey: #c4c4c4;
+  --premium-grey-dark: #c4c4c4;
+  --premium-grey-darker: #c4c4c4;
+  --premium-grey-darkest: #c4c4c4;
+  --premium-bg: #c4c4c4;
+  --premium-text: #000000;
+  --premium-border: #000000;
+  --premium-hover: #c4c4c4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Global Responsive Base */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: clamp(14px, 2.5vw, 18px);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #c4c4c4;
+  color: #000000;
+  font-family: var(--font-orbitron), monospace;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #c4c4c4;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Remove any spacing between sections */
+main, section, div {
+  margin: 0;
+  padding: 0;
+}
+
+/* Global responsive overflow prevention and mobile optimizations */
+* {
+  box-sizing: border-box;
+  max-width: 100vw;
+}
+
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 767px) {
+  * {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+  
+  /* Improve touch scrolling */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
+/* Enhanced mobile experience */
+@media (max-width: 575px) {
+  /* Ensure proper touch targets */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve text readability */
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Optimize for mobile viewport */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+}

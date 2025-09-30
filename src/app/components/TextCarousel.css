@@ -1,0 +1,197 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+.textCarouselContainer {
+  background: #c4c4c4;
+  color: #000000;
+  height: 50px;
+  border-bottom: 1px solid #000000;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  z-index: 998;
+}
+
+.textCarouselContainer .carousel {
+  height: 100%;
+  position: relative;
+}
+
+.textCarouselContainer .carousel-inner {
+  height: 100%;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.textCarouselContainer .carousel-item {
+  position: relative;
+  display: none;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.textCarouselContainer .carousel-item.active {
+  display: flex !important;
+}
+
+.textCarouselContainer .carousel-item-next,
+.textCarouselContainer .carousel-item-prev,
+.textCarouselContainer .carousel-item.active {
+  display: flex;
+}
+
+/* Fade transition instead of slide */
+.textCarouselContainer .carousel-fade .carousel-item {
+  opacity: 0;
+  transition-property: opacity;
+  transform: none;
+}
+
+.textCarouselContainer .carousel-fade .carousel-item.active {
+  opacity: 1;
+}
+
+.textCarouselMessage {
+  font-family: var(--font-orbitron), monospace;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  color: #000000;
+  padding: 0 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Responsive Design */
+@media (max-width: 479px) {
+  .textCarouselContainer {
+    height: 40px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .textCarouselMessage {
+    font-size: 11px;
+    padding: 0 0.8rem;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 575px) and (min-width: 480px) {
+  .textCarouselContainer {
+    height: 42px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .textCarouselMessage {
+    font-size: 12px;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 576px) {
+  .textCarouselContainer {
+    height: 45px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .textCarouselMessage {
+    font-size: 13px;
+    padding: 0 1.2rem;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .textCarouselContainer {
+    height: 48px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .textCarouselMessage {
+    font-size: 13px;
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .textCarouselContainer {
+    height: 50px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .textCarouselMessage {
+    font-size: 14px;
+    padding: 0 2rem;
+  }
+}
+
+/* Carousel Control Arrows */
+.textCarouselContainer .carousel-control-prev,
+.textCarouselContainer .carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.textCarouselContainer .carousel-control-prev {
+  left: 10px;
+}
+
+.textCarouselContainer .carousel-control-next {
+  right: 10px;
+}
+
+.textCarouselContainer .carousel-control-prev:hover,
+.textCarouselContainer .carousel-control-next:hover {
+  opacity: 1;
+}
+
+.textCarouselContainer .carousel-control-prev-icon,
+.textCarouselContainer .carousel-control-next-icon {
+  width: 20px;
+  height: 20px;
+  background-size: 20px 20px;
+  filter: brightness(0) saturate(100%);
+}
+
+/* Hide arrows on very small screens */
+@media (max-width: 479px) {
+  .textCarouselContainer .carousel-control-prev,
+  .textCarouselContainer .carousel-control-next {
+    display: none;
+  }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 479px) {
+  .textCarouselContainer {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+}
+
+
