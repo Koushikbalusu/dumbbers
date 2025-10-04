@@ -14,45 +14,45 @@ export default function CartPage() {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (isAuthenticated) {
       fetchCartItems();
     } else {
+    setError("");
       setLoading(false);
     }
   }, [isAuthenticated, cart]);
 
   const fetchCartItems = async () => {
-    if (!isAuthenticated) return;
-    
     setLoading(true);
+    setError("");
     try {
-      console.log('Cart items:', cart.items);
       const items = await Promise.all(
         cart.items.map(async (item) => {
           try {
-            const response = await fetch(`https://dumbbers-backend.onrender.com/api/products/${item.product}`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products/${item.product}`);
             const data = await response.json();
             if (data.success) {
               const product = data.data.product;
               const variant = product.variants.find(v => v._id === item.variantId);
               return {
                 ...item,
-                product: product,
-                variant: variant
+                product,
+                variant
               };
             }
             return null;
           } catch (error) {
-            console.error('Error fetching product:', item.product, error);
+            setError('Error fetching product details.');
             return null;
           }
         })
       );
       setCartItems(items.filter(Boolean));
     } catch (error) {
-      console.error('Error fetching cart items:', error);
+      setError('Error fetching cart items.');
     } finally {
       setLoading(false);
     }
@@ -104,6 +104,18 @@ export default function CartPage() {
         <div className={styles.loadingState}>
           <div className={styles.loadingSpinner}></div>
           <p>Loading cart...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.cartContainer}>
+        <div className={styles.errorState}>
+          <h2>Error</h2>
+          <p>{error}</p>
+          <button className={styles.retryButton} onClick={fetchCartItems}>Retry</button>
         </div>
       </div>
     );

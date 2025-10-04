@@ -15,6 +15,9 @@ const nextConfig = {
                 hostname: 'sample-videos.com',
             }
         ],
+    },
+    env: {
+        NEXT_PUBLIC_BACKEND_URL: 'http://localhost:5000',
     }
 };
 

@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Orbitron } from "next/font/google";
 import "./globals.css";
 import TextCarousel from "./components/TextCarousel";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import { AuthProvider } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
 // import BootstrapClient from "./components/BootstrapClient";
@@ -38,7 +39,7 @@ export default function RootLayout({ children }) {
             <TextCarousel />
             <Navbar />
             <main>{children}</main>
-            <footer></footer>
+            <Footer />
             {/* <BootstrapClient /> */}
           </CartProvider>
         </AuthProvider>

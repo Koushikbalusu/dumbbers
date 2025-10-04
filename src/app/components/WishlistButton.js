@@ -17,7 +17,7 @@ export default function WishlistButton({ productId }) {
 
   const checkWishlistStatus = async () => {
     try {
-      const response = await fetch('https://dumbbers-backend.onrender.com/api/wishlist', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/wishlist`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
           'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export default function WishlistButton({ productId }) {
 
     setLoading(true);
     try {
-      const url = `https://dumbbers-backend.onrender.com/api/wishlist/${productId}`;
+      const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/wishlist/${productId}`;
       const method = isInWishlist ? 'DELETE' : 'POST';
       
       const response = await fetch(url, {

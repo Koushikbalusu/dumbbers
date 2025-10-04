@@ -1,0 +1,304 @@
+.container {
+  min-height: 100vh;
+  background: #c4c4c4;
+  color: #000000;
+  padding: 2rem 0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #c4c4c4;
+  pointer-events: none;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: var(--font-orbitron), monospace;
+  color: #000000;
+  margin-bottom: 1rem;
+  text-align: center;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+.title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #000000;
+  margin: 1rem auto 0 auto;
+  border-radius: 2px;
+}
+
+.brandSection {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: #c4c4c4;
+  border-radius: 16px;
+  border: 2px solid #000000;
+  position: relative;
+  z-index: 1;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.brandName {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: var(--font-orbitron), monospace;
+  color: #000000;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.brandDescription {
+  font-size: 1.2rem;
+  color: #000000;
+  margin: 0;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+  background: #c4c4c4;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 2px solid #000000;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: var(--font-orbitron), monospace;
+  color: #000000;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.sectionTitle::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #000000;
+  margin-top: 0.5rem;
+  border-radius: 2px;
+}
+
+.missionText {
+  font-size: 1.1rem;
+  color: #000000;
+  line-height: 1.8;
+  margin: 0;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #000000;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.list li::before {
+  content: '•';
+  color: #000000;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.quote {
+  background: #c4c4c4;
+  padding: 2rem;
+  border-radius: 16px;
+  border-left: 4px solid #000000;
+  margin: 2rem 0;
+  text-align: center;
+  border: 2px solid #000000;
+  position: relative;
+  z-index: 1;
+}
+
+.quote p {
+  font-size: 1.1rem;
+  color: #000000;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.contactInfo {
+  background: #c4c4c4;
+  padding: 2rem;
+  border-radius: 16px;
+  border-left: 4px solid #000000;
+  margin-top: 2rem;
+  text-align: center;
+  border: 2px solid #000000;
+  position: relative;
+  z-index: 1;
+}
+
+.contactTitle {
+  font-size: 1.3rem;
+  font-family: var(--font-orbitron), monospace;
+  color: #000000;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contactInfo p {
+  color: #000000;
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+.email {
+  font-size: 1.1rem;
+  color: #000000;
+  font-weight: 700;
+  font-family: var(--font-orbitron), monospace;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content {
+    padding: 0 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .brandSection {
+    padding: 1.5rem;
+  }
+  
+  .brandName {
+    font-size: 1.8rem;
+  }
+  
+  .brandDescription {
+    font-size: 1.1rem;
+  }
+  
+  .section {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.3rem;
+  }
+  
+  .missionText {
+    font-size: 1rem;
+  }
+  
+  .quote {
+    padding: 1.5rem;
+  }
+  
+  .quote p {
+    font-size: 1rem;
+  }
+  
+  .contactInfo {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem 0;
+  }
+  
+  .content {
+    padding: 0 0.75rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .brandSection {
+    padding: 1rem;
+  }
+  
+  .logoContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .brandName {
+    font-size: 1.5rem;
+  }
+  
+  .section {
+    padding: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.2rem;
+  }
+  
+  .list li {
+    font-size: 0.9rem;
+  }
+}

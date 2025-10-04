@@ -1,0 +1,456 @@
+/* All Products Page Styles */
+.productsPage {
+  min-height: 100vh;
+  background: #c4c4c4;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.productsPage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #c4c4c4;
+  pointer-events: none;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pageTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: var(--font-orbitron), monospace;
+  color: #000000;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+.pageTitle::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #000000;
+  margin: 1rem auto 0 auto;
+  border-radius: 2px;
+}
+
+.pageSubtitle {
+  font-size: 1.2rem;
+  font-family: var(--font-orbitron), monospace;
+  color: #000000;
+  margin: 0;
+  font-weight: 300;
+}
+
+.filtersSection {
+  max-width: 1200px;
+  margin: 0 auto 3rem auto;
+  position: relative;
+  z-index: 1;
+}
+
+.filtersContainer {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 200px;
+}
+
+.filterLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000000;
+  font-family: var(--font-orbitron), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filterSelect {
+  padding: 0.75rem 1rem;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  background: #c4c4c4;
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.filterSelect:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.resultsInfo {
+  text-align: center;
+  color: #000000;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.productsContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #000000;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingContainer p {
+  color: #000000;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.errorContainer,
+.emptyContainer {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #c4c4c4;
+  border-radius: 16px;
+  border: 2px solid #000000;
+}
+
+.errorContainer h3,
+.emptyContainer h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 1rem 0;
+  font-family: var(--font-orbitron), monospace;
+}
+
+.errorContainer p,
+.emptyContainer p {
+  color: #000000;
+  font-size: 1rem;
+  margin: 0 0 2rem 0;
+  font-weight: 500;
+}
+
+.retryButton,
+.clearFiltersButton {
+  background: #000000;
+  color: #c4c4c4;
+  border: 2px solid #000000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-orbitron), monospace;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.retryButton:hover,
+.clearFiltersButton:hover {
+  background: #c4c4c4;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.paginationButton {
+  background: #c4c4c4;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: var(--font-orbitron), monospace;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background: #000000;
+  color: #c4c4c4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.paginationButton:disabled {
+  background: #999999;
+  color: #666666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.pageNumbers {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.pageButton {
+  background: #c4c4c4;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font-orbitron), monospace;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 40px;
+  text-align: center;
+}
+
+.pageButton:hover:not(.active) {
+  background: #000000;
+  color: #c4c4c4;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.pageButton.active {
+  background: #000000;
+  color: #c4c4c4;
+  font-weight: 700;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .productsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .filtersContainer {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .productsPage {
+    padding: 1.5rem 1rem;
+  }
+  
+  .pageTitle {
+    font-size: 2.5rem;
+  }
+  
+  .pageSubtitle {
+    font-size: 1rem;
+  }
+  
+  .filtersContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .filterGroup {
+    min-width: 250px;
+  }
+  
+  .productsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+  }
+  
+  .pagination {
+    gap: 0.75rem;
+  }
+  
+  .paginationButton {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .pageButton {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    min-width: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .productsPage {
+    padding: 1rem 0.75rem;
+  }
+  
+  .pageTitle {
+    font-size: 2rem;
+  }
+  
+  .pageSubtitle {
+    font-size: 0.9rem;
+  }
+  
+  .filtersContainer {
+    gap: 0.75rem;
+  }
+  
+  .filterGroup {
+    min-width: 100%;
+  }
+  
+  .productsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .pagination {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .pageNumbers {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .errorContainer,
+  .emptyContainer {
+    padding: 2rem 1rem;
+  }
+  
+  .errorContainer h3,
+  .emptyContainer h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Animation for page load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.productsPage {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Focus states for accessibility */
+.filterSelect:focus,
+.paginationButton:focus,
+.pageButton:focus,
+.retryButton:focus,
+.clearFiltersButton:focus {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .productsPage {
+    background: #ffffff;
+  }
+  
+  .filterSelect,
+  .paginationButton,
+  .pageButton,
+  .retryButton,
+  .clearFiltersButton {
+    background: #ffffff;
+    border: 3px solid #000000;
+  }
+  
+  .pageButton.active {
+    background: #000000;
+    color: #ffffff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .productsPage {
+    animation: none;
+  }
+  
+  .paginationButton,
+  .pageButton,
+  .retryButton,
+  .clearFiltersButton {
+    transition: none;
+  }
+  
+  .paginationButton:hover,
+  .pageButton:hover,
+  .retryButton:hover,
+  .clearFiltersButton:hover {
+    transform: none;
+  }
+}

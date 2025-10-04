@@ -154,6 +154,7 @@
   text-align: center;
   line-height: 1.2;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }
 
 /* User Menu */
@@ -454,6 +455,15 @@
     height: 32px;
   }
 
+  .cart-badge {
+    top: -3px;
+    right: -3px;
+    font-size: 0.65rem;
+    padding: 1px 5px;
+    min-width: 16px;
+    border-radius: 8px;
+  }
+
   .mobile-menu-content {
     padding: 1.5rem;
   }
@@ -476,6 +486,15 @@
   .action-link {
     width: 30px;
     height: 30px;
+  }
+
+  .cart-badge {
+    top: -2px;
+    right: -2px;
+    font-size: 0.6rem;
+    padding: 1px 4px;
+    min-width: 14px;
+    border-radius: 7px;
   }
 
   .mobile-menu-content {
@@ -508,6 +527,15 @@
   .mobile-menu-toggle svg {
     width: 22px;
     height: 22px;
+  }
+
+  .cart-badge {
+    top: -1px;
+    right: -1px;
+    font-size: 0.55rem;
+    padding: 1px 3px;
+    min-width: 12px;
+    border-radius: 6px;
   }
   
   .action-link:hover {

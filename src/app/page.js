@@ -19,7 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("https://dumbbers-backend.onrender.com/api/meta/")
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/meta/`)
       .then((res) => {
         setMeta(res.data);
         setCategories(res.data.data.categories);
@@ -36,10 +36,10 @@ export default function Home() {
   useEffect(() => {
     const fetchCategoryImages = async () => {
       const categoryEndpoints = {
-        pants: "https://dumbbers-backend.onrender.com/api/products?category=PANTS",
-        boxyvests: "https://dumbbers-backend.onrender.com/api/products?category=BOXY_VESTS",
-        compressiontshirts: "https://dumbbers-backend.onrender.com/api/products?category=COMPRESSION_T_SHIRTS",
-        oversizedtshirts: "https://dumbbers-backend.onrender.com/api/products?category=OVERSIZED_T_SHIRTS"
+        pants: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?category=PANTS`,
+        boxyvests: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?category=BOXY_VESTS`,
+        compressiontshirts: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?category=COMPRESSION_T_SHIRTS`,
+        oversizedtshirts: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?category=OVERSIZED_T_SHIRTS`
       };
 
       const imagePromises = Object.entries(categoryEndpoints).map(async ([category, endpoint]) => {
@@ -124,24 +124,7 @@ export default function Home() {
           </div>
           <div className={style.herovisual}>
             <div className={style.herobanner}>
-              {/* Desktop/Tablet - 3:1 ratio */}
-              <Image
-                src="/placeholder-featured.svg"
-                alt="Dumbbers Hero Desktop"
-                fill
-                priority
-                sizes="(max-width: 767px) 0px, 100vw"
-                className={style.bannerDesktop}
-              />
-              {/* Mobile - 9:16 ratio */}
-              <Image
-                src="/placeholder-oversizedtshirts.svg"
-                alt="Dumbbers Hero Mobile"
-                fill
-                priority
-                sizes="(max-width: 767px) 100vw, 0px"
-                className={style.bannerMobile}
-              />
+              {/* Background images handled via CSS for responsive design */}
             </div>
           </div>
         </div>
@@ -210,16 +193,16 @@ export default function Home() {
               For every 25 orders, we donate 1 dress to needy.Now it's your turn to help them as Citizens.
             </h3>
           </div>
-          <div className={style.contributionstats}>
-            <div className={style.stat}>
-              <h1>NO.OF SALES</h1>
-              <h2>0</h2>
-            </div>
-            <div className={style.stat}>
-              <h1>Donations</h1>
-              <h2>0</h2>
-            </div>
-          </div>
+              <div className={style.contributionstats}>
+                <div className={style.stat}>
+                  <h1>NO.OF SALES</h1>
+                  <h2>700</h2>
+                </div>
+                <div className={style.stat}>
+                  <h1>Donations</h1>
+                  <h2>250</h2>
+                </div>
+              </div>
         </div>
       </div>
     </>

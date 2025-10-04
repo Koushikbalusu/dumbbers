@@ -92,6 +92,13 @@ export default function Navbar() {
           >
             Home
           </Link>
+          <Link
+            href="/products"
+            className="nav-link"
+            onClick={closeMobileMenu}
+          >
+            All Products
+          </Link>
           {categories.map((category, index) => {
             // Remove spaces and hyphens only for 3rd and 4th links (index 2 and 3)
             const href = index >= 2 
@@ -109,13 +116,6 @@ export default function Navbar() {
               </Link>
             );
           })}
-          <Link
-            href="/blog"
-            className="nav-link"
-            onClick={closeMobileMenu}
-          >
-            Blog
-          </Link>
         </div>
 
         {/* Search Bar */}
@@ -197,6 +197,13 @@ export default function Navbar() {
             >
               Home
             </Link>
+            <Link
+              href="/products"
+              className="mobile-nav-link"
+              onClick={closeMobileMenu}
+            >
+              All Products
+            </Link>
             {categories.map((category, index) => {
               // Remove spaces and hyphens only for 3rd and 4th links (index 2 and 3)
               const href = index >= 2 
@@ -214,13 +221,6 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <Link
-              href="/blog"
-              className="mobile-nav-link"
-              onClick={closeMobileMenu}
-            >
-              Blog
-            </Link>
           </div>
         </div>
       </div>

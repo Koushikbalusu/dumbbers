@@ -249,17 +249,35 @@
 }
 
 .current-price {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 2.8rem;
+  font-weight: 900;
   color: #000000;
   position: relative;
   z-index: 1;
+  font-family: Arial, sans-serif;
+  letter-spacing: -0.5px;
 }
 
 .original-price {
-  font-size: 1.2rem;
-  color: #000000;
-  text-decoration: line-through;
+  font-size: 1.3rem;
+  color: #999999;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+  opacity: 0.8;
+  position: relative;
+}
+
+.original-price::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #999999;
+  transform: translateY(-50%) rotate(-15deg);
+  transform-origin: center;
 }
 
 .discount {
@@ -998,7 +1016,8 @@
   }
   
   .current-price {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 900;
   }
   
   .product-actions {
@@ -1063,7 +1082,8 @@
   }
   
   .current-price {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    font-weight: 900;
   }
   
   .size-option {

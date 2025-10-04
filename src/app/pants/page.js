@@ -9,17 +9,18 @@ export default function PantsPage() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios
-            .get("https://dumbbers-backend.onrender.com/api/products?category=PANTS")
-            .then((response) => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?category=PANTS`);
                 if (response.data && response.data.data && response.data.data.items) {
                     setProducts(response.data.data.items);
                 }
-            })
-            .catch((error) => {
-                // Optionally handle error
+            } catch (error) {
                 console.error("Error fetching products:", error);
-            });
+                // Optionally show user-friendly error message
+            }
+        };
+        fetchProducts();
     }, []);
 
     return (
@@ -45,6 +46,7 @@ export default function PantsPage() {
                             imageUrl={product.images?.[0] || '/placeholder.jpg'}
                             prodDiscription={product.description}
                             prodPrice={product.variants?.[0]?.price || 0}
+                            prodMrp={product.variants?.[0]?.mrp || null}
                             prodSlug={product.slug}
                             images={product.images || []}
                         />

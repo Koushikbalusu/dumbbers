@@ -10,7 +10,7 @@ export default function OversizedTshirtsPage() {
 
     useEffect(() => {
         axios
-            .get("https://dumbbers-backend.onrender.com/api/products?category=OVERSIZED_T_SHIRTS")
+            .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?category=OVERSIZED_T_SHIRTS`)
             .then((response) => {
                 if (response.data && response.data.data && response.data.data.items) {
                     setProducts(response.data.data.items);
@@ -45,6 +45,7 @@ export default function OversizedTshirtsPage() {
                             imageUrl={product.images?.[0] || '/placeholder.jpg'}
                             prodDiscription={product.description}
                             prodPrice={product.variants?.[0]?.price || 0}
+                            prodMrp={product.variants?.[0]?.mrp || null}
                             prodSlug={product.slug}
                             images={product.images || []}
                         />

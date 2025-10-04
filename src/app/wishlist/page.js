@@ -11,6 +11,7 @@ export default function WishlistPage() {
   const router = useRouter();
   const [wishlistItems, setWishlistItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [authModalOpen, setAuthModalOpen] = useState(false);
 
   useEffect(() => {
@@ -46,31 +47,28 @@ export default function WishlistPage() {
 
   const fetchWishlist = async () => {
     if (!isAuthenticated) return;
-    
     setLoading(true);
+    setError("");
     try {
       const token = localStorage.getItem('authToken');
       if (!token) {
-        console.error('No auth token found');
+        setError('No auth token found. Please sign in again.');
         return;
       }
-
-      const response = await fetch('https://dumbbers-backend.onrender.com/api/wishlist', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/wishlist`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
-
       if (response.ok) {
         const data = await response.json();
-        console.log('Wishlist data:', data);
         setWishlistItems(data.data.items || []);
       } else {
-        console.error('Failed to fetch wishlist:', response.status, response.statusText);
+        setError('Failed to fetch wishlist. Please try again.');
       }
     } catch (error) {
-      console.error('Error fetching wishlist:', error);
+      setError('Error fetching wishlist. Please check your connection.');
     } finally {
       setLoading(false);
     }
@@ -101,6 +99,18 @@ export default function WishlistPage() {
         <div className={styles.loadingState}>
           <div className={styles.loadingSpinner}></div>
           <p>Loading wishlist...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.wishlistContainer}>
+        <div className={styles.errorState}>
+          <h2>Error</h2>
+          <p>{error}</p>
+          <button className={styles.retryButton} onClick={fetchWishlist}>Retry</button>
         </div>
       </div>
     );
@@ -140,6 +150,7 @@ export default function WishlistPage() {
                 imageUrl={product.images?.[0] || '/placeholder.jpg'}
                 prodDiscription={product.description}
                 prodPrice={product.variants?.[0]?.price || 0}
+                prodMrp={product.variants?.[0]?.mrp || null}
                 prodSlug={product.slug}
                 images={product.images || []}
               />

@@ -35,7 +35,7 @@ export default function ProductPage() {
 
   const fetchProduct = async () => {
     try {
-      const response = await fetch(`https://dumbbers-backend.onrender.com/api/products/${params.prodid}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products/${params.prodid}`);
       const data = await response.json();
       
       if (data.success) {
@@ -90,7 +90,7 @@ export default function ProductPage() {
   const fetchReviews = async () => {
     setReviewsLoading(true);
     try {
-      const response = await fetch(`https://dumbbers-backend.onrender.com/api/products/${params.prodid}/reviews?populate=user`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products/${params.prodid}/reviews?populate=user`);
       const data = await response.json();
       console.log('Reviews data:', data); // Debug log
       if (data.success) {
@@ -134,7 +134,7 @@ export default function ProductPage() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://dumbbers-backend.onrender.com/api/products/${params.prodid}/reviews`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products/${params.prodid}/reviews`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

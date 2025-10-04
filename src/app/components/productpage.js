@@ -14,7 +14,7 @@ export default function Productpage({ prodid }) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://dumbbers-backend.onrender.com/api/products/${prodid}`)
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products/${prodid}`)
       .then((res) => {
         const productData = res.data.data.product;
         setProduct(productData);

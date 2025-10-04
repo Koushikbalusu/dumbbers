@@ -11,6 +11,7 @@ export default function Productcard({
     prodDiscription, 
     prodPrice, 
     prodSlug,
+    prodMrp, // MRP (Maximum Retail Price)
     images = [] // Array of images for hover effect
 }) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -51,7 +52,16 @@ export default function Productcard({
                 <div className="productcardinfo">
                     <h3>{prodName}</h3>
                     <p>{prodDiscription}</p>
-                    <h4>₹{prodPrice || 'Price not available'}</h4>
+                        <div className="product-pricing">
+                            {prodMrp && prodMrp > prodPrice ? (
+                                <div className="price-row">
+                                    <h4 className="current-price">₹{prodPrice || 'Price not available'}</h4>
+                                    <h4 className="mrp-price">₹{prodMrp}</h4>
+                                </div>
+                            ) : (
+                                <h4 className="current-price">₹{prodPrice || 'Price not available'}</h4>
+                            )}
+                        </div>
                 </div>
             </Link>
             <WishlistButton productId={prodId} />

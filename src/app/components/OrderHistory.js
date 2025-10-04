@@ -110,23 +110,7 @@ export default function OrderHistory() {
         <p>View all your past and current orders</p>
       </div>
 
-      <div className={styles.filters}>
-        <div className={styles.filterGroup}>
-          <label htmlFor="statusFilter">Filter by Status:</label>
-          <select
-            id="statusFilter"
-            value={statusFilter}
-            onChange={handleStatusFilter}
-            className={styles.filterSelect}
-          >
-            {statusOptions.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+      {/* Order status filter removed as only paid orders are shown */}
 
       {error && (
         <div className={styles.error}>
@@ -146,7 +130,7 @@ export default function OrderHistory() {
       ) : (
         <>
           <div className={styles.ordersList}>
-            {orders.map((order) => (
+            {orders.filter(order => order.status === 'paid').map((order) => (
               <div key={order._id} className={styles.orderCard}>
                 <div className={styles.orderHeader}>
                   <div className={styles.orderInfo}>

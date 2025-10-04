@@ -145,20 +145,73 @@
   color: #000000;
   text-align: center;
   padding: 12px 0;
-  border-top: 1px solid #000000;
   position: relative;
 }
 
-.productcardinfo h4::before {
+/* Product Pricing Styles */
+.product-pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 0;
+  position: relative;
+}
+
+.current-price {
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0;
+  color: #000000;
+  text-align: center;
+  padding: 0;
+  letter-spacing: -0.5px;
+}
+
+.mrp-price {
+  font-family: Arial, sans-serif !important;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+  color: #999999;
+  text-align: center;
+  text-decoration: none;
+  padding: 0;
+  opacity: 0.8;
+  position: relative;
+}
+
+.mrp-price::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
+  top: 50%;
+  left: 0;
+  right: 0;
   height: 2px;
+  background: #999999;
+  transform: translateY(-50%) rotate(-15deg);
+  transform-origin: center;
+}
+
+/* Price row for side-by-side layout */
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.price-row::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 1px;
   background: #000000;
-  border-radius: 1px;
 }
 
 /* Responsive Design */
@@ -184,6 +237,23 @@
   .productcardinfo h4 {
     font-family: var(--font-orbitron), monospace;
     font-size: 1.5rem;
+  }
+
+  .current-price {
+    font-family: Arial, sans-serif;
+    font-size: 1.7rem;
+    font-weight: 900;
+  }
+
+  .mrp-price {
+    font-family: Arial, sans-serif !important;
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+
+  .price-row {
+    gap: 8px;
   }
 }
 
@@ -213,6 +283,23 @@
   .productcardinfo h4 {
     font-family: var(--font-orbitron), monospace;
     font-size: 1.4rem;
+  }
+
+  .current-price {
+    font-family: Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+
+  .mrp-price {
+    font-family: Arial, sans-serif !important;
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+
+  .price-row {
+    gap: 6px;
   }
 }
 

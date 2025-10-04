@@ -16,7 +16,7 @@
 
 /* Home module specific styles only */
 
-/* Hero Section - Modern Design Without Image */
+/* Hero Section - Clean Design with Original Image Size */
 .herosection {
   position: relative;
   width: 100%;
@@ -28,10 +28,27 @@
   align-items: center;
   justify-content: center;
   background: transparent;
+  background-image: url('/banner.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
   box-sizing: border-box;
   margin: 0;
-  padding: 2rem 1rem;
+  padding: 0;
   border: none;
+}
+
+.herosection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  pointer-events: none;
 }
 
 
@@ -49,22 +66,29 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 1200px;
-  padding: 0;
-  z-index: 2;
-  position: relative;
-  overflow: hidden;
-  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  z-index: 10;
+  position: absolute;
+  top: 115%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+  gap: 1.5rem;
+  text-align: center;
 }
 
 .herotext {
   flex: 1;
-  max-width: 600px;
+  max-width: 500px;
   animation: slideInLeft 1s ease-out;
-  overflow: hidden;
+  overflow: visible;
   padding: 0;
-  text-align: left;
+  text-align: center;
   min-width: 0;
+  z-index: 12;
+  position: relative;
 }
 
 @keyframes slideInLeft {
@@ -84,6 +108,8 @@
   justify-content: center;
   align-items: center;
   animation: slideInRight 1s ease-out;
+  position: relative;
+  z-index: 11;
 }
 
 .herobanner {
@@ -92,55 +118,158 @@
   height: 60vh;
   min-height: 360px;
   max-height: 720px;
-  border: 2px solid #000000;
   border-radius: 16px;
   overflow: hidden;
-  background: var(--background);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  background: transparent;
 }
 
-/* Hide/show sources per breakpoint */
-.bannerDesktop { 
-  display: block; 
-  object-fit: cover; 
+@media (min-width: 1200px) {
+  .herosection {
+    background-image: url('https://res.cloudinary.com/dziymwwa3/image/upload/v1759383618/LAPTOP_BANNER_f2eorf.png');
+    height: 60vh !important;
+    min-height: 60vh !important;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .herocontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 1.5rem;
+  }
+  
+  .herotext {
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .herotitle {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+  
+  .herosubtitle {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  
+  .herodescription {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+  }
+  
+  .herobuttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .ctabutton, .secondarybutton {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    min-width: 160px;
+    text-align: center;
+  }
 }
 
-.bannerMobile { 
-  display: none; 
-  object-fit: cover; 
+@media (min-width: 1400px) {
+  .herosection {
+    height: 45vh !important;
+    min-height: 45vh !important;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .herocontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 1.2rem;
+  }
+  
+  .herotext {
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .herotitle {
+    font-size: 3.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+  
+  .herosubtitle {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  
+  .herodescription {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+  }
+  
+  .herobuttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .ctabutton, .secondarybutton {
+    padding: 0.9rem 1.6rem;
+    font-size: 0.95rem;
+    min-width: 170px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .herobanner {
+    height: 45vh;
+    min-height: 300px;
+    max-height: 500px;
+  }
 }
 
 @media (max-width: 767px) {
   .herobanner {
-    height: 50vh;
-    min-height: 300px;
-    max-height: 560px;
-    aspect-ratio: 9/16;
-  }
-  .bannerDesktop { 
-    display: none; 
-  }
-  .bannerMobile { 
-    display: block; 
-  }
-}
-
-/* Additional responsive adjustments */
-@media (max-width: 1024px) {
-  .herobanner {
-    height: 55vh;
-    min-height: 400px;
-    max-height: 600px;
+    height: 40vh;
+    min-height: 250px;
+    max-height: 400px;
   }
 }
 
 @media (max-width: 480px) {
   .herobanner {
-    height: 45vh;
-    min-height: 280px;
-    max-height: 500px;
+    height: 35vh;
+    min-height: 200px;
+    max-height: 350px;
   }
 }
+
 
 @keyframes slideInRight {
   from {
@@ -240,13 +369,13 @@
 
 .herotitle {
   font-family: var(--font-orbitron), monospace;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 900;
-  color: #000000;
-  margin: 0 0 1rem 0;
+  color: #ffffff;
+  margin: 0 0 0.8rem 0;
   letter-spacing: -0.01rem;
   text-transform: uppercase;
-  text-shadow: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   padding: 0;
   white-space: normal;
   overflow: hidden;
@@ -257,12 +386,13 @@
 
 .herosubtitle {
   font-family: var(--font-orbitron), monospace;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #000000;
-  margin: 0 0 1.5rem 0;
-  letter-spacing: 0.2rem;
+  color: #ffffff;
+  margin: 0 0 1.2rem 0;
+  letter-spacing: 0.15rem;
   text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   overflow: hidden;
   word-wrap: break-word;
   word-break: break-word;
@@ -270,30 +400,33 @@
 
 .herodescription {
   font-family: var(--font-orbitron), monospace;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 400;
-  color: #000000;
-  margin: 0 0 2.5rem 0;
-  line-height: 1.6;
-  max-width: 500px;
+  color: #ffffff;
+  margin: 0 auto 2rem auto;
+  line-height: 1.5;
+  max-width: 450px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
   overflow: hidden;
   word-wrap: break-word;
   word-break: break-word;
+  text-align: center;
 }
 
 .herobuttons {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
 }
 
 .ctabutton {
-  background: #c4c4c4;
+  background: #ffffff;
   border: 2px solid #000000;
   color: #000000;
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
   font-weight: 700;
   font-family: var(--font-orbitron), monospace;
   text-transform: uppercase;
@@ -301,9 +434,10 @@
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   position: relative;
   overflow: hidden;
+  z-index: 12;
 }
 
 .ctabutton::before {
@@ -330,10 +464,10 @@
 
 .secondarybutton {
   background: transparent;
-  border: 2px solid #000000;
-  color: #000000;
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
   font-weight: 600;
   font-family: var(--font-orbitron), monospace;
   text-transform: uppercase;
@@ -343,6 +477,8 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  z-index: 12;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .secondarybutton::before {
@@ -352,7 +488,7 @@
   left: 0;
   width: 0;
   height: 100%;
-  background: #000000;
+  background: #ffffff;
   transition: width 0.3s ease;
   z-index: -1;
 }
@@ -362,7 +498,7 @@
 }
 
 .secondarybutton:hover {
-  color: #c4c4c4;
+  color: #000000;
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
@@ -590,10 +726,11 @@
 }
 
 .featuredproductdetails h3:first-child {
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 2.2rem;
+  font-weight: 600;
   color: #000000;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
+  font-family: var(--font-orbitron), monospace;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
 }
@@ -606,6 +743,7 @@
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .featuredproductdetails h3:nth-child(3) {
@@ -796,171 +934,7 @@
 
 /* Responsive Design - Comprehensive Breakpoints */
 
-/* Extra Large Screens (xl: 1400px+) */
-@media (min-width: 1400px) {
-  .herosection {
-    min-height: 100vh;
-    padding: 3rem 2rem;
-  }
-  
-  .herocontent {
-    gap: 4rem;
-  }
-  
-  .herotext {
-    max-width: 800px;
-  }
-  
-  .herotitle {
-    font-size: 4.5rem;
-    letter-spacing: 0.05rem;
-    white-space: normal;
-    word-break: keep-all;
-  }
-  
-  .herosubtitle {
-    font-size: 1.8rem;
-  }
-  
-  .herodescription {
-    font-size: 1.3rem;
-  }
-  
-  .herobuttons {
-    gap: 1.2rem;
-  }
-  
-  .ctabutton, .secondarybutton {
-    padding: 0.9rem 2rem;
-    font-size: 0.95rem;
-  }
-  
-  .categoriessection {
-    padding: 8rem 3rem;
-  }
-  
-  .categoriessection h1 {
-    font-size: 4rem;
-  }
-  
-  .categorycardscontainer {
-    grid-template-columns: repeat(4, minmax(320px, 1fr));
-    gap: 3rem;
-    max-width: 1600px;
-    padding: 2rem 3rem;
-  }
-  
-  .featuredsection {
-    padding: 8rem 3rem;
-  }
-  
-  .featuredsection h1 {
-    font-size: 4rem;
-  }
-  
-  .featuredproductcard {
-    max-width: 1400px;
-  }
-  
-  .featuredproductdetails h3:nth-child(2) {
-    font-size: 4rem;
-  }
-  
-  .featuredproductdetails h3:nth-child(3) {
-    font-size: 2.5rem;
-  }
-  
-  .contributionsection {
-    padding: 8rem 3rem;
-  }
-  
-  .contributionheading {
-    font-size: 2.2rem;
-  }
-}
 
-/* Large Screens (l: 1200px - 1399px) */
-@media (max-width: 1399px) and (min-width: 1200px) {
-  .herosection {
-    min-height: 90vh;
-    padding: 2.5rem 1.5rem;
-  }
-  
-  .herocontent {
-    gap: 3rem;
-  }
-  
-  .herotext {
-    max-width: 750px;
-  }
-  
-  .herotitle {
-    font-size: 4rem;
-    letter-spacing: 0.05rem;
-    white-space: normal;
-    word-break: keep-all;
-  }
-  
-  .herosubtitle {
-    font-size: 1.6rem;
-  }
-  
-  .herodescription {
-    font-size: 1.2rem;
-  }
-  
-  .herobuttons {
-    gap: 1rem;
-  }
-  
-  .ctabutton, .secondarybutton {
-    padding: 0.85rem 1.8rem;
-    font-size: 0.9rem;
-  }
-  
-  .categoriessection {
-    padding: 7rem 2.5rem;
-  }
-  
-  .categoriessection h1 {
-    font-size: 3.8rem;
-  }
-  
-  .categorycardscontainer {
-    grid-template-columns: repeat(4, minmax(300px, 1fr));
-    gap: 2.5rem;
-    max-width: 1500px;
-    padding: 1.5rem 2.5rem;
-  }
-  
-  .featuredsection {
-    padding: 7rem 2.5rem;
-  }
-  
-  .featuredsection h1 {
-    font-size: 3.8rem;
-  }
-  
-  .featuredproductcard {
-    max-width: 1200px;
-  }
-  
-  .featuredproductdetails h3:nth-child(2) {
-    font-size: 3.8rem;
-  }
-  
-  .featuredproductdetails h3:nth-child(3) {
-    font-size: 2.3rem;
-  }
-  
-  .contributionsection {
-    padding: 7rem 2.5rem;
-  }
-  
-  .contributionheading {
-    font-size: 2rem;
-  }
-}
 
 /* Medium Screens (m: 992px - 1199px) */
 @media (max-width: 1199px) and (min-width: 992px) {
@@ -1026,6 +1000,7 @@
   
   .featuredproductdetails h3:nth-child(2) {
     font-size: 3.2rem;
+    color: #1a1a1a;
   }
   
   .featuredproductdetails h3:nth-child(3) {
@@ -1052,78 +1027,6 @@
   }
 }
 
-/* Extend medium styling up to 1350px width */
-@media (max-width: 1350px) and (min-width: 1200px) {
-  .herosection {
-    min-height: 80vh;
-    padding: 16vh 1.5rem 2rem 1.5rem;
-  }
-  .herocontent {
-    gap: 2.5rem;
-  }
-  .herotitle {
-    font-size: 4rem;
-    letter-spacing: -0.005rem;
-  }
-  .herosubtitle {
-    font-size: 1.5rem;
-  }
-  .herodescription {
-    font-size: 1.1rem;
-  }
-  .herobuttons {
-    gap: 1.5rem;
-  }
-  .ctabutton, .secondarybutton {
-    padding: 1rem 2.5rem;
-    font-size: 1rem;
-  }
-  .categoriessection {
-    padding: 6rem 2rem;
-  }
-  .categoriessection h1 {
-    font-size: 3.5rem;
-  }
-  .categorycardscontainer {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    max-width: 100vw;
-    padding: 1rem 2rem;
-  }
-  .featuredsection {
-    padding: 6rem 2rem;
-  }
-  .featuredsection h1 {
-    font-size: 3.5rem;
-  }
-  .featuredproductcard {
-    max-width: 1000px;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin: 0 auto;
-  }
-  .featuredproductdetails h3:nth-child(2) {
-    font-size: 3.2rem;
-  }
-  .featuredproductdetails h3:nth-child(3) {
-    font-size: 2rem;
-  }
-  .contributionsection {
-    gap: 3rem;
-    padding: 6rem 2rem;
-  }
-  .contributionvideo {
-    min-height: 500px;
-    max-height: 600px;
-  }
-  .contributionvideo video {
-    min-height: 500px;
-    max-height: 600px;
-  }
-  .contributionheading {
-    font-size: 1.8rem;
-  }
-}
 
 /* Small Screens (s: 768px - 991px) */
 @media (max-width: 991px) and (min-width: 768px) {
@@ -1216,6 +1119,7 @@
   
   .featuredproductdetails h3:nth-child(2) {
     font-size: 2.8rem;
+    color: #1a1a1a;
   }
   
   .featuredproductdetails h3:nth-child(3) {
@@ -1282,11 +1186,16 @@
     min-height: 60vh;
     height: 80vh;
     padding: 1rem 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .herocontent {
     flex-direction: column;
     text-align: center;
+    align-items: center;
+    justify-content: center;
     gap: 1.5rem;
   }
   
@@ -1311,6 +1220,7 @@
     justify-content: center;
     flex-direction: column;
     gap: 1rem;
+    align-items: center;
   }
   
   .ctabutton, .secondarybutton {
@@ -1389,6 +1299,7 @@
   
   .featuredproductdetails h3:nth-child(2) {
     font-size: 2.5rem;
+    color: #1a1a1a;
   }
   
   .featuredproductdetails h3:nth-child(3) {
@@ -1483,11 +1394,16 @@
     min-height: 50vh;
     height: 70vh;
     padding: 0.8rem 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .herocontent {
     flex-direction: column;
     text-align: center;
+    align-items: center;
+    justify-content: center;
     gap: 1.2rem;
   }
   
@@ -1512,6 +1428,7 @@
     justify-content: center;
     flex-direction: column;
     gap: 0.8rem;
+    align-items: center;
   }
   
   .ctabutton, .secondarybutton {
@@ -1591,6 +1508,7 @@
   .featuredproductdetails h3:nth-child(2) {
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: #1a1a1a;
   }
   
   .featuredproductdetails h3:nth-child(3) {
@@ -1771,6 +1689,7 @@
   .featuredproductdetails h3:nth-child(2) {
     font-size: 1.5rem;
     margin-bottom: 0.6rem;
+    color: #1a1a1a;
   }
   
   .featuredproductdetails h3:nth-child(3) {
@@ -1952,6 +1871,7 @@
   .featuredproductdetails h3:nth-child(2) {
     font-size: 1.6rem;
     margin-bottom: 0.8rem;
+    color: #1a1a1a;
   }
   
   .featuredproductdetails h3:nth-child(3) {
@@ -2284,6 +2204,8 @@
     padding: 0;
     gap: 2rem;
     justify-content: center;
+    align-items: center;
+    text-align: center;
   }
   
   .herotitle {
@@ -2324,6 +2246,28 @@
     min-height: 600px;
     padding: 1rem;
     padding-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .herocontent {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .herotext {
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .herobuttons {
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.8rem;
   }
   
   .categorycardscontainer {
@@ -2444,6 +2388,11 @@
 @media (prefers-contrast: high) {
   .herosection {
     background: transparent;
+    background-image: url('/banner.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-attachment: scroll;
   }
   
   .herotitle {

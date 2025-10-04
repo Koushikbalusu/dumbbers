@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
 
   // API base URL
-  const API_BASE = 'https://dumbbers-backend.onrender.com/api';
+  const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL + '/api';
 
   // Get auth token from localStorage
   useEffect(() => {
